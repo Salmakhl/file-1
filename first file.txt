@@ -1,0 +1,157 @@
+Enter password: ******************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.19 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| isgi               |
+| mysql              |
+| performance_schema |
+| sys                |
+| test1              |
+| test2              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use isgi;
+Database changed
+mysql> show tables;
+Empty set (0.16 sec)
+
+mysql> create table stagiaire (
+    -> code int,
+    -> fullname varchar(30));
+Query OK, 0 rows affected (0.54 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_isgi |
++----------------+
+| stagiaire      |
++----------------+
+1 row in set (0.05 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_isgi |
++----------------+
+| stagiaire      |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> desc stagiaire;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| code     | int         | YES  |     | NULL    |       |
+| fullname | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.11 sec)
+
+mysql>  insert into stagiaire
+    -> values(1, a name);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name)' at line 2
+mysql> insert into stagiaire
+    -> values (1 ,'a name');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from stagiaire;
++------+----------+
+| code | fullname |
++------+----------+
+|    1 | a name   |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into stagiaire
+    -> value(2 , 'wiwiwi');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from stagiaire;
++------+----------+
+| code | fullname |
++------+----------+
+|    1 | a name   |
+|    2 | wiwiwi   |
++------+----------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> add column cin varchar (10)
+    -> after code;
+Query OK, 0 rows affected (1.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| code     | int         | YES  |     | NULL    |       |
+| cin      | varchar(10) | YES  |     | NULL    |       |
+| fullname | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> add first_name varchar(10);
+Query OK, 0 rows affected (0.47 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table stagiaire
+    -> drop cin;
+Query OK, 0 rows affected (0.91 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| code       | int         | YES  |     | NULL    |       |
+| fullname   | varchar(30) | YES  |     | NULL    |       |
+| first_name | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> rename column fullname to name;
+Query OK, 0 rows affected (0.33 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| code       | int         | YES  |     | NULL    |       |
+| name       | varchar(30) | YES  |     | NULL    |       |
+| first_name | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> modify column name varchar(15);
+Query OK, 2 rows affected (0.78 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| code       | int         | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| first_name | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
